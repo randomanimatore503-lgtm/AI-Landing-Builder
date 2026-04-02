@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "LeadBridge Systems"
+version = "1.0.0"
+id = "artifacts/leadbridge-landing"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22703
+
+[services.development]
+run = "pnpm --filter @workspace/leadbridge-landing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/leadbridge-landing", "run", "build" ]
+publicDir = "artifacts/leadbridge-landing/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22703"
+BASE_PATH = "/"
