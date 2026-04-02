@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, BrainCircuit, Database, Zap, BarChart3, CheckCircle2, MessageCircle, UserCheck, CalendarDays, TrendingUp } from "lucide-react";
+import { ArrowRight, BrainCircuit, Database, Zap, BarChart3, CheckCircle2, MessageCircle, UserCheck, CalendarDays, TrendingUp, Mail, Facebook, Instagram } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -61,21 +61,6 @@ export default function Home() {
                 </Button>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-                className="mt-16 relative"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none rounded-2xl" />
-                <div className="absolute -inset-x-8 top-0 bottom-1/2 bg-primary/5 blur-3xl rounded-full pointer-events-none" />
-                <img
-                  src="/astronaut.png"
-                  alt="AI automation — taking your leads to new deals"
-                  className="w-full max-w-lg mx-auto object-contain drop-shadow-2xl"
-                  style={{ filter: "drop-shadow(0 0 40px rgba(0,212,255,0.15))" }}
-                />
-              </motion.div>
             </div>
           </div>
         </section>
@@ -184,6 +169,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Astronaut Section */}
+        <section className="py-8 bg-background relative overflow-hidden">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative"
+            >
+              <div className="absolute -inset-x-8 top-0 bottom-1/2 bg-primary/5 blur-3xl rounded-full pointer-events-none" />
+              <img
+                src="/astronaut.png"
+                alt="AI automation — taking your leads to new deals"
+                className="w-full max-w-md mx-auto object-contain drop-shadow-2xl"
+                style={{ filter: "drop-shadow(0 0 40px rgba(0,212,255,0.15))" }}
+              />
+            </motion.div>
+          </div>
+        </section>
+
         {/* How It Works Section */}
         <section id="how-it-works" className="py-24 relative overflow-hidden bg-card/50 border-t border-border/50">
           <div className="container mx-auto px-4 max-w-6xl">
@@ -255,18 +261,6 @@ export default function Home() {
                   NodeEngine LIVE handles the volume of 10 SDRs at a fraction of the cost, working 24/7/365 without sick days or sleep.
                 </p>
                 <ul className="space-y-4 mb-8">
-                  <li className="flex items-center gap-3">
-                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
-                      <TrendingUp className="h-3 w-3 text-primary" />
-                    </div>
-                    <span className="font-medium">300% increase in lead response rate</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
-                      <TrendingUp className="h-3 w-3 text-primary" />
-                    </div>
-                    <span className="font-medium">45% higher qualification accuracy</span>
-                  </li>
                   <li className="flex items-center gap-3">
                     <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
                       <TrendingUp className="h-3 w-3 text-primary" />
@@ -390,12 +384,47 @@ export default function Home() {
 
       <footer className="border-t border-border py-12 bg-card">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2.5">
-              <img src="/logo.png" alt="LeadBridge Systems" className="h-7 w-7 object-contain opacity-80" />
-              <span className="text-xs font-semibold text-foreground">LeadBridge Systems</span>
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2.5">
+                <img src="/logo.png" alt="LeadBridge Systems" className="h-7 w-7 object-contain opacity-80" />
+                <span className="text-sm font-semibold text-foreground">LeadBridge Systems</span>
+              </div>
+              <p className="text-xs text-muted-foreground max-w-xs">AI-powered WhatsApp lead qualification for real estate professionals.</p>
             </div>
-            <p className="text-sm text-muted-foreground">
+
+            <div className="flex flex-col gap-3">
+              <p className="text-xs font-semibold text-foreground uppercase tracking-wider">Contact Us</p>
+              <a
+                href="mailto:leadbridgesystems@gmail.com"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+                leadbridgesystems@gmail.com
+              </a>
+              <a
+                href="https://www.facebook.com/share/18UCQznZi5/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Facebook className="h-4 w-4" />
+                Facebook
+              </a>
+              <a
+                href="https://www.instagram.com/leadbridge.ai?igsh=MjdyMmd3bDRhYmdz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Instagram className="h-4 w-4" />
+                @leadbridge.ai
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-border/50">
+            <p className="text-xs text-muted-foreground text-center">
               © {new Date().getFullYear()} LeadBridge Systems. All rights reserved.
             </p>
           </div>
