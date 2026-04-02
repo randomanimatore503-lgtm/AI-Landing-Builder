@@ -1,7 +1,11 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
-export default function Navbar() {
+interface NavbarProps {
+  onBookDemo: () => void;
+}
+
+export default function Navbar({ onBookDemo }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
@@ -17,7 +21,10 @@ export default function Navbar() {
             <a href="#features" className="transition-colors hover:text-foreground">Features</a>
             <a href="#how-it-works" className="transition-colors hover:text-foreground">How it Works</a>
           </div>
-          <Button className="bg-gradient-to-r from-primary/80 to-primary hover:from-primary hover:to-primary/80 text-primary-foreground border-0 font-semibold shadow-lg shadow-primary/20">
+          <Button
+            onClick={onBookDemo}
+            className="bg-gradient-to-r from-primary/80 to-primary hover:from-primary hover:to-primary/80 text-primary-foreground border-0 font-semibold shadow-lg shadow-primary/20"
+          >
             Book Demo
           </Button>
         </nav>

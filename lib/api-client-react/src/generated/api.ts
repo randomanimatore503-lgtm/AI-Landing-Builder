@@ -5,18 +5,26 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type {
+  MutationFunction,
   QueryFunction,
   QueryKey,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HealthStatus } from "./api.schemas";
+import type {
+  DemoRequestBody,
+  DemoRequestResponse,
+  ErrorResponse,
+  HealthStatus,
+} from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
-import type { ErrorType } from "../custom-fetch";
+import type { ErrorType, BodyType } from "../custom-fetch";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -99,3 +107,90 @@ export function useHealthCheck<
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+/**
+ * Saves a demo booking request to persistent storage
+ * @summary Submit a demo request
+ */
+export const getSubmitDemoRequestUrl = () => {
+  return `/api/demo-requests`;
+};
+
+export const submitDemoRequest = async (
+  demoRequestBody: DemoRequestBody,
+  options?: RequestInit,
+): Promise<DemoRequestResponse> => {
+  return customFetch<DemoRequestResponse>(getSubmitDemoRequestUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(demoRequestBody),
+  });
+};
+
+export const getSubmitDemoRequestMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof submitDemoRequest>>,
+    TError,
+    { data: BodyType<DemoRequestBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof submitDemoRequest>>,
+  TError,
+  { data: BodyType<DemoRequestBody> },
+  TContext
+> => {
+  const mutationKey = ["submitDemoRequest"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof submitDemoRequest>>,
+    { data: BodyType<DemoRequestBody> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return submitDemoRequest(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SubmitDemoRequestMutationResult = NonNullable<
+  Awaited<ReturnType<typeof submitDemoRequest>>
+>;
+export type SubmitDemoRequestMutationBody = BodyType<DemoRequestBody>;
+export type SubmitDemoRequestMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Submit a demo request
+ */
+export const useSubmitDemoRequest = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof submitDemoRequest>>,
+    TError,
+    { data: BodyType<DemoRequestBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof submitDemoRequest>>,
+  TError,
+  { data: BodyType<DemoRequestBody> },
+  TContext
+> => {
+  return useMutation(getSubmitDemoRequestMutationOptions(options));
+};

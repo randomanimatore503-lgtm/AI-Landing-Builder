@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, BrainCircuit, Database, Zap, BarChart3, CheckCircle2, MessageCircle, UserCheck, CalendarDays, TrendingUp, Mail, Facebook, Instagram } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import DemoModal from "@/components/DemoModal";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function Home() {
+  const [demoOpen, setDemoOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 font-sans flex flex-col">
-      <Navbar />
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
+      <Navbar onBookDemo={() => setDemoOpen(true)} />
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -53,10 +58,10 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Button size="lg" className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-primary-foreground font-bold text-lg shadow-xl shadow-primary/25 border-0">
+                <Button size="lg" onClick={() => setDemoOpen(true)} className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-primary-foreground font-bold text-lg shadow-xl shadow-primary/25 border-0">
                   Book Free Demo <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 border-border bg-background/50 backdrop-blur hover:bg-muted font-semibold text-lg">
+                <Button size="lg" variant="outline" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })} className="w-full sm:w-auto h-14 px-8 border-border bg-background/50 backdrop-blur hover:bg-muted font-semibold text-lg">
                   See How It Works
                 </Button>
               </motion.div>
@@ -368,7 +373,7 @@ export default function Home() {
                 Setup in under a week. No technical knowledge needed. Results from day one.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button size="lg" className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-primary-foreground font-bold text-lg shadow-xl shadow-primary/25 border-0">
+                <Button size="lg" onClick={() => setDemoOpen(true)} className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-primary-foreground font-bold text-lg shadow-xl shadow-primary/25 border-0">
                   Book Free Demo <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>

@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export type DemoRequestBodyLeadsPerDay =
   (typeof DemoRequestBodyLeadsPerDay)[keyof typeof DemoRequestBodyLeadsPerDay];
@@ -18,20 +15,3 @@ export const DemoRequestBodyLeadsPerDay = {
   "16-30": "16-30",
   "30+": "30+",
 } as const;
-
-export interface DemoRequestBody {
-  fullName: string;
-  businessName: string;
-  contact: string;
-  leadsPerDay: DemoRequestBodyLeadsPerDay;
-}
-
-export interface DemoRequestResponse {
-  success: boolean;
-  id: string;
-  message: string;
-}
-
-export interface ErrorResponse {
-  error: string;
-}

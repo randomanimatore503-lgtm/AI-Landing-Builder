@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: demo
+    description: Demo request operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /demo-requests:
+    post:
+      operationId: submitDemoRequest
+      tags: [demo]
+      summary: Submit a demo request
+      description: Saves a demo booking request to persistent storage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DemoRequestBody"
+      responses:
+        "201":
+          description: Demo request saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemoRequestResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +60,44 @@ components:
           type: string
       required:
         - status
-
+    DemoRequestBody:
+      type: object
+      properties:
+        fullName:
+          type: string
+        businessName:
+          type: string
+        contact:
+          type: string
+        leadsPerDay:
+          type: string
+          enum:
+            - "1-5"
+            - "6-15"
+            - "16-30"
+            - "30+"
+      required:
+        - fullName
+        - businessName
+        - contact
+        - leadsPerDay
+    DemoRequestResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        id:
+          type: string
+        message:
+          type: string
+      required:
+        - success
+        - id
+        - message
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error

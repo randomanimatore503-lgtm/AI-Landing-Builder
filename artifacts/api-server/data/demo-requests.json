@@ -1,0 +1,18 @@
+[
+  {
+    "id": "f494a1a3-7cce-4798-b4cf-0a549a8af8a5",
+    "fullName": "Rajesh Sharma",
+    "businessName": "Sharma Properties",
+    "contact": "rajesh@example.com",
+    "leadsPerDay": "6-15",
+    "submittedAt": "2026-04-02T19:35:14.844Z"
+  },
+  {
+    "id": "41026fda-6372-4113-9082-185dd075a3e6",
+    "fullName": "Rajesh Sharma",
+    "businessName": "Sharma Properties",
+    "contact": "rajesh@example.com",
+    "leadsPerDay": "6-15",
+    "submittedAt": "2026-04-02T19:35:22.856Z"
+  }
+]

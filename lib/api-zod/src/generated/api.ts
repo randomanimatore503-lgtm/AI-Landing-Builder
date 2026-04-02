@@ -14,3 +14,14 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Saves a demo booking request to persistent storage
+ * @summary Submit a demo request
+ */
+export const SubmitDemoRequestBody = zod.object({
+  fullName: zod.string(),
+  businessName: zod.string(),
+  contact: zod.string(),
+  leadsPerDay: zod.enum(["1-5", "6-15", "16-30", "30+"]),
+});
