@@ -60,6 +60,22 @@ export default function Home() {
                   See How It Works
                 </Button>
               </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className="mt-16 relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none rounded-2xl" />
+                <div className="absolute -inset-x-8 top-0 bottom-1/2 bg-primary/5 blur-3xl rounded-full pointer-events-none" />
+                <img
+                  src="/astronaut.png"
+                  alt="AI automation — taking your leads to new deals"
+                  className="w-full max-w-lg mx-auto object-contain drop-shadow-2xl"
+                  style={{ filter: "drop-shadow(0 0 40px rgba(0,212,255,0.15))" }}
+                />
+              </motion.div>
             </div>
           </div>
         </section>
@@ -375,11 +391,9 @@ export default function Home() {
       <footer className="border-t border-border py-12 bg-card">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="LeadBridge Systems" className="h-6 w-auto object-contain opacity-80" />
-              <div className="flex flex-col">
-                <span className="text-xs font-semibold leading-none text-foreground">LeadBridge Systems</span>
-              </div>
+            <div className="flex items-center gap-2.5">
+              <img src="/logo.png" alt="LeadBridge Systems" className="h-7 w-7 object-contain opacity-80" />
+              <span className="text-xs font-semibold text-foreground">LeadBridge Systems</span>
             </div>
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} LeadBridge Systems. All rights reserved.

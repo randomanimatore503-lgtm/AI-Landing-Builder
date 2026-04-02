@@ -5,10 +5,10 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
-          <img src="/logo.png" alt="LeadBridge Systems" className="h-8 w-auto object-contain" />
+        <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
+          <img src="/logo.png" alt="LeadBridge Systems" className="h-9 w-9 object-contain" />
           <div className="flex flex-col">
-            <span className="text-sm font-semibold leading-none text-foreground hidden sm:block">LeadBridge Systems</span>
+            <span className="text-sm font-bold leading-none text-foreground">LeadBridge Systems</span>
             <span className="text-[10px] font-bold tracking-wider text-primary leading-none mt-1">NODEENGINE LIVE</span>
           </div>
         </Link>
