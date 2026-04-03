@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, ExternalLink } from "lucide-react";
+
+const PRIVACY_POLICY_URL = "https://node-engine-mini-privacy-policies-b9v23tgyb.vercel.app/";
 
 interface DemoModalProps {
   open: boolean;
@@ -22,6 +24,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
     contact: "",
     leadsPerDay: "",
   });
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +38,10 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
     e.preventDefault();
     if (!form.fullName || !form.businessName || !form.contact || !form.leadsPerDay) {
       setError("Please fill in all fields.");
+      return;
+    }
+    if (!agreedToPolicy) {
+      setError("Please agree to the privacy policy to continue.");
       return;
     }
 
@@ -66,13 +73,14 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
     setTimeout(() => {
       setSuccess(false);
       setError("");
+      setAgreedToPolicy(false);
       setForm({ fullName: "", businessName: "", contact: "", leadsPerDay: "" });
     }, 300);
   }
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md bg-[#0d1117] border border-border text-foreground">
+      <DialogContent className="sm:max-w-md bg-[#0d1117] border border-border text-foreground max-h-[90vh] overflow-y-auto">
         {success ? (
           <div className="flex flex-col items-center justify-center py-8 gap-4 text-center">
             <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center">
@@ -162,6 +170,51 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
                     </label>
                   ))}
                 </div>
+              </div>
+
+              {/* Privacy Policy Consent */}
+              <div className="flex flex-col gap-2 rounded-lg border border-border bg-card/50 p-4">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <div className="relative flex-shrink-0 mt-0.5">
+                    <input
+                      type="checkbox"
+                      checked={agreedToPolicy}
+                      onChange={(e) => {
+                        setAgreedToPolicy(e.target.checked);
+                        setError("");
+                      }}
+                      className="sr-only"
+                    />
+                    <div
+                      className={`h-5 w-5 rounded border-2 flex items-center justify-center transition-all ${
+                        agreedToPolicy
+                          ? "border-primary bg-primary"
+                          : "border-muted-foreground/50 bg-card group-hover:border-primary/50"
+                      }`}
+                    >
+                      {agreedToPolicy && (
+                        <svg className="h-3 w-3 text-primary-foreground" fill="none" viewBox="0 0 12 12">
+                          <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  <span className="text-sm text-muted-foreground leading-snug">
+                    By booking, you are agreeing to our privacy policies.
+                  </span>
+                </label>
+                <p className="text-xs text-muted-foreground/70 pl-8">
+                  You can read the privacy policies by clicking{" "}
+                  <a
+                    href={PRIVACY_POLICY_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline inline-flex items-center gap-1 font-medium"
+                  >
+                    here <ExternalLink className="h-3 w-3" />
+                  </a>
+                  .
+                </p>
               </div>
 
               {error && (
