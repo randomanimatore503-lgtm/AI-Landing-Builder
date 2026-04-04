@@ -195,6 +195,111 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Plans Section */}
+        <section id="plans" className="py-24 bg-background border-t border-border/50">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose your plan</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Two powerful products built for real estate professionals at every scale.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* NodeEngine Mini */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="relative rounded-2xl border border-primary/30 bg-card p-8 shadow-lg shadow-primary/5 flex flex-col"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent rounded-2xl pointer-events-none" />
+                <div className="relative z-10 flex flex-col flex-1">
+                  <div className="flex items-center gap-4 mb-6">
+                    <img
+                      src="/nodeengine-mini-logo.webp"
+                      alt="NodeEngine Mini"
+                      className="h-16 w-16 rounded-full object-cover border-2 border-primary/30 shadow-md"
+                    />
+                    <div>
+                      <h3 className="text-xl font-bold">NodeEngine Mini</h3>
+                      <span className="inline-flex items-center gap-1.5 mt-1 text-xs font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                        Available Now
+                      </span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 flex-1">
+                    {[
+                      "Replies to inquiries and handles them automatically.",
+                      "Knows your business and remembers customer preferences.",
+                      "Sends daily closed inquiries report via email.",
+                    ].map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => setDemoOpen(true)}
+                    className="mt-8 w-full h-11 rounded-xl bg-gradient-to-r from-primary to-blue-500 text-primary-foreground font-bold text-sm hover:from-primary/90 hover:to-blue-500/90 transition-all shadow-lg shadow-primary/20"
+                  >
+                    Get Started →
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* NodeEngine Pro */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="relative rounded-2xl border border-border bg-card p-8 flex flex-col opacity-80"
+              >
+                <div className="absolute top-4 right-4 z-10">
+                  <span className="text-xs font-bold bg-muted text-muted-foreground border border-border rounded-full px-3 py-1 tracking-wider uppercase">Under Development</span>
+                </div>
+                <div className="relative z-10 flex flex-col flex-1">
+                  <div className="flex items-center gap-4 mb-6">
+                    <img
+                      src="/nodeengine-pro-logo.webp"
+                      alt="NodeEngine Pro"
+                      className="h-16 w-16 rounded-full object-cover border-2 border-border shadow-md"
+                    />
+                    <div>
+                      <h3 className="text-xl font-bold">NodeEngine Pro</h3>
+                      <span className="inline-flex items-center gap-1.5 mt-1 text-xs font-semibold text-muted-foreground bg-muted border border-border rounded-full px-2.5 py-0.5">
+                        Coming Soon
+                      </span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 flex-1">
+                    {[
+                      "Finds leads from real estate sites (like MagicBricks) automatically.",
+                      "Shows weekly insights on where your inquiries are coming from (Instagram, WhatsApp, etc.)",
+                      "Web portal that organizes all your work into a clean, easy dashboard.",
+                      "Handles inquiries and sends daily summary reports via email.",
+                    ].map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-8 w-full h-11 rounded-xl bg-muted border border-border flex items-center justify-center text-muted-foreground font-bold text-sm cursor-not-allowed select-none">
+                    Coming Soon
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* How It Works Section */}
         <section id="how-it-works" className="py-24 relative overflow-hidden bg-card/50 border-t border-border/50">
           <div className="container mx-auto px-4 max-w-6xl">
