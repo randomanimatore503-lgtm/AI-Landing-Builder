@@ -49,20 +49,21 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
     setError("");
 
     try {
-      const res = await fetch(`${import.meta.env.BASE_URL}api/demo-requests`, {
+      await fetch("https://n8n.leadbridge.online/webhook/d980994d-d99f-4d83-8036-ee67f2989c0e", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          full_name: form.fullName,
+          business_name: form.businessName,
+          contact: form.contact,
+          leads_per_day: form.leadsPerDay,
+          submitted_at: new Date().toISOString(),
+        }),
       });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error((data as { error?: string }).error || "Something went wrong. Please try again.");
-      }
 
       setSuccess(true);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
