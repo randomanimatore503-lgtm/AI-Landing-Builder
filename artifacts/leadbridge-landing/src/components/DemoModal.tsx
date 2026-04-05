@@ -49,7 +49,7 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
     setError("");
 
     try {
-      await fetch("https://n8n.leadbridge.online/webhook-test/d980994d-d99f-4d83-8036-ee67f2989c0e", {
+      await fetch("https://n8n.leadbridge.online/webhook/d980994d-d99f-4d83-8036-ee67f2989c0e", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
