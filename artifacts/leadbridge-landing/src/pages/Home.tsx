@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, BrainCircuit, Database, Zap, BarChart3, CheckCircle2, MessageCircle, UserCheck, CalendarDays, TrendingUp, Mail, Facebook, Instagram } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import DemoModal from "@/components/DemoModal";
+import DemoSection from "@/components/DemoSection";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -250,6 +251,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <DemoSection />
 
         {/* Impact Section */}
         <section className="py-24 bg-background border-t border-border/50">

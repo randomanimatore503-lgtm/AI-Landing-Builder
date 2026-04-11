@@ -19,6 +19,7 @@ export default function Navbar({ onBookDemo }: NavbarProps) {
         <nav className="flex items-center gap-6">
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
             <a href="#features" className="transition-colors hover:text-foreground">Features</a>
+            <a href="#demo" className="transition-colors hover:text-foreground">Demo</a>
             <a href="#plans" className="transition-colors hover:text-foreground">Plans</a>
             <a href="#how-it-works" className="transition-colors hover:text-foreground">How it Works</a>
           </div>
