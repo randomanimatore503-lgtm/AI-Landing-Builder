@@ -65,7 +65,7 @@ export default function DemoSection() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.BASE_URL}api/chat`, {
+      const res = await fetch(`https://n8n.leadbridge.online/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
