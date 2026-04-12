@@ -65,7 +65,7 @@ export default function DemoSection() {
     setLoading(true);
 
     try {
-      const res = await fetch(`https://n8n.leadbridge.online/api/chat`, {
+      const res = await fetch(`https://chat-backend-reqj.onrender.com/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
